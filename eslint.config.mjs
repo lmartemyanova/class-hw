@@ -12,7 +12,7 @@ export default [
   } }},
   pluginJs.configs.recommended,
   {
-    ignores: ['dist/*', 'coverage/*', 'reports/*']
+    ignores: ['dist/*', 'coverage/*', 'reports/*', 'src/index.js']
   },
   {
     files: ['**/*.test.js'],
