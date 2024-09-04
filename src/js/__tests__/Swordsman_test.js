@@ -7,12 +7,24 @@ beforeEach(() => {
 });
 
 test('должен корректно создавать объект Swordsman', () => {
-    expect(swordsman.name).toBe('Anna');
-    expect(swordsman.type).toBe('Swordsman');
-    expect(swordsman.health).toBe(100);
-    expect(swordsman.level).toBe(1);
-    expect(swordsman.attack).toBe(40);
-    expect(swordsman.defence).toBe(10);
+    const correct = {
+        health: 100,
+        level: 1,
+        attack: 40,
+        defence: 10,
+        _name: 'Anna',
+        _type: 'Swordsman', 
+    };
+    expect(swordsman).toEqual(correct);
+});
+
+test('должен корректно присваивать свойства name и type', () => {
+    const correct = {
+        name: 'Anna',
+        type: 'Swordsman', 
+    };
+    expect(swordsman.name).toBe(correct.name);
+    expect(swordsman.type).toBe(correct.type);
 });
 
 test('должен выбрасывать ошибку при слишком коротком имени', () => {
@@ -24,7 +36,7 @@ test('должен выбрасывать ошибку при слишком д�
 });
 
 test('должен выбрасывать ошибку при недопустимом типе', () => {
-    expect(() => new Swordsman('Anna', 'Warrior')).toThrow('Недопустимый тип: Warrior. Допустимые типы: Bowman, Swordsman, Magician, Daemon, Undead, Zombie');
+    expect(() => new Swordsman('Anna', 'Warrior')).toThrow('Недопустимый тип: Warrior. Допустимые типы: bowman, swordsman, magician, daemon, undead, zombie');
 });
 
 test('должен корректно обрабатывать метод levelUp', () => {

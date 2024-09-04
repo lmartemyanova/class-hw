@@ -7,12 +7,24 @@ beforeEach(() => {
 });
 
 test('должен корректно создавать объект Undead', () => {
-    expect(undead.name).toBe('Anna');
-    expect(undead.type).toBe('Undead');
-    expect(undead.health).toBe(100);
-    expect(undead.level).toBe(1);
-    expect(undead.attack).toBe(25);
-    expect(undead.defence).toBe(25);
+    const correct = {
+        health: 100,
+        level: 1,
+        attack: 25,
+        defence: 25,
+        _name: 'Anna',
+        _type: 'Undead', 
+    };
+    expect(undead).toEqual(correct);
+});
+
+test('должен корректно присваивать свойства name и type', () => {
+    const correct = {
+        name: 'Anna',
+        type: 'Undead', 
+    };
+    expect(undead.name).toBe(correct.name);
+    expect(undead.type).toBe(correct.type);
 });
 
 test('должен выбрасывать ошибку при слишком коротком имени', () => {
@@ -24,7 +36,7 @@ test('должен выбрасывать ошибку при слишком д�
 });
 
 test('должен выбрасывать ошибку при недопустимом типе', () => {
-    expect(() => new Undead('Anna', 'Undied')).toThrow('Недопустимый тип: Undied. Допустимые типы: Bowman, Swordsman, Magician, Daemon, Undead, Zombie');
+    expect(() => new Undead('Anna', 'Undied')).toThrow('Недопустимый тип: Undied. Допустимые типы: bowman, swordsman, magician, daemon, undead, zombie');
 });
 
 test('должен корректно обрабатывать метод levelUp', () => {

@@ -1,14 +1,14 @@
 export default class Character {
-    constructor(name, type, health = 100, level = 1, attack, defence) {
+    constructor(name, type) {
         this.name = name;
         this.type = type;
-        this.health = health;
-        this.level = level;
-        this.attack = attack;
-        this.defence = defence;
+        this.health = 100;
+        this.level = 1;
+        this.attack = undefined;
+        this.defence = undefined;
     };
 
-    static allowedTypes = ['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'];
+    static allowedTypes = ['bowman', 'swordsman', 'magician', 'daemon', 'undead', 'zombie'];
 
     get name() {
         return this._name;
@@ -29,9 +29,8 @@ export default class Character {
     };
 
     set type(value) {
-        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-        if (Character.allowedTypes.includes(formattedValue)) {
-            this._type = formattedValue;
+        if (Character.allowedTypes.includes(value.toLowerCase())) {
+            this._type = value;
         } else {
             throw new Error(`Недопустимый тип: ${value}. Допустимые типы: ${Character.allowedTypes.join(', ')}`);
         }

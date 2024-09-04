@@ -7,12 +7,24 @@ beforeEach(() => {
 });
 
 test('должен корректно создавать объект Daemon', () => {
-    expect(daemon.name).toBe('Anna');
-    expect(daemon.type).toBe('Daemon');
-    expect(daemon.health).toBe(100);
-    expect(daemon.level).toBe(1);
-    expect(daemon.attack).toBe(10);
-    expect(daemon.defence).toBe(40);
+    const correct = {
+        health: 100,
+        level: 1,
+        attack: 10,
+        defence: 40,
+        _name: 'Anna',
+        _type: 'Daemon', 
+    };
+    expect(daemon).toEqual(correct);
+});
+
+test('должен корректно присваивать свойства name и type', () => {
+    const correct = {
+        name: 'Anna',
+        type: 'Daemon', 
+    };
+    expect(daemon.name).toBe(correct.name);
+    expect(daemon.type).toBe(correct.type);
 });
 
 test('должен выбрасывать ошибку при слишком коротком имени', () => {
@@ -24,7 +36,7 @@ test('должен выбрасывать ошибку при слишком д�
 });
 
 test('должен выбрасывать ошибку при недопустимом типе', () => {
-    expect(() => new Daemon('Anna', 'Diamon')).toThrow('Недопустимый тип: Diamon. Допустимые типы: Bowman, Swordsman, Magician, Daemon, Undead, Zombie');
+    expect(() => new Daemon('Anna', 'Diamon')).toThrow('Недопустимый тип: Diamon. Допустимые типы: bowman, swordsman, magician, daemon, undead, zombie');
 });
 
 test('должен корректно обрабатывать метод levelUp', () => {

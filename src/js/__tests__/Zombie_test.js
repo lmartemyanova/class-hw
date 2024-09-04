@@ -7,12 +7,24 @@ beforeEach(() => {
 });
 
 test('должен корректно создавать объект Zombie', () => {
-    expect(zombie.name).toBe('Anna');
-    expect(zombie.type).toBe('Zombie');
-    expect(zombie.health).toBe(100);
-    expect(zombie.level).toBe(1);
-    expect(zombie.attack).toBe(40);
-    expect(zombie.defence).toBe(10);
+    const correct = {
+        health: 100,
+        level: 1,
+        attack: 40,
+        defence: 10,
+        _name: 'Anna',
+        _type: 'Zombie', 
+    };
+    expect(zombie).toEqual(correct);
+});
+
+test('должен корректно присваивать свойства name и type', () => {
+    const correct = {
+        name: 'Anna',
+        type: 'Zombie', 
+    };
+    expect(zombie.name).toBe(correct.name);
+    expect(zombie.type).toBe(correct.type);
 });
 
 test('должен выбрасывать ошибку при слишком коротком имени', () => {
@@ -24,7 +36,7 @@ test('должен выбрасывать ошибку при слишком д�
 });
 
 test('должен выбрасывать ошибку при недопустимом типе', () => {
-    expect(() => new Zombie('Anna', 'Zombee')).toThrow('Недопустимый тип: Zombee. Допустимые типы: Bowman, Swordsman, Magician, Daemon, Undead, Zombie');
+    expect(() => new Zombie('Anna', 'Zombee')).toThrow('Недопустимый тип: Zombee. Допустимые типы: bowman, swordsman, magician, daemon, undead, zombie');
 });
 
 test('должен корректно обрабатывать метод levelUp', () => {
